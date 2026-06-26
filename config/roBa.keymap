@@ -94,7 +94,7 @@
 &kp EXCLAMATION   &kp AT_SIGN        &kp HASH              &kp F4                 &kp PERCENT                                           &kp CARET  &kp AMPERSAND  &kp QUESTION    &kp F9     &kp MINUS
 &kp TAB           &kp LSHIFT         &kt F2                &kp LEFT_ALT           &kp UNDERSCORE     &kp EXCLAMATION      &kp ASTERISK  &kp PLUS   &kp DELETE     &kp UP          &kp ENTER  &kp BACKSPACE
 &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp K_APPLICATION  &kp QUESTION         &kp SLASH     &kp MINUS  &kp LEFT       &kp DOWN_ARROW  &kp RIGHT  &kp ESCAPE
-&kp DOLLAR        &kp BACKSLASH      &kp TILDE             &kp LEFT_CONTROL       &kp INT_MUHENKAN   &kp INT_HENKAN       &trans        &trans                                               &trans
+&kp DOLLAR        &kp BACKSLASH      &kp TILDE             &kp LEFT_CONTROL       &kp INT_MUHENKAN   &kp INT_HENKAN       &trans        &trans                                               &kp RIGHT_WIN
             >;
         };
 
