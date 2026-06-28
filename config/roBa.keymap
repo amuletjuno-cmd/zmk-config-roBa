@@ -32,18 +32,6 @@
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
 };
 
 / {
@@ -90,7 +78,6 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
             bindings = <&mo>, <&to_layer_0>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
@@ -100,7 +87,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            bindings = 
+            bindings = <
 &kp Q             &kp W         &kp E         &kp R                          &kp T                                                            &kp Y            &kp U  &lt 5 I    &kp O    &kp P
 &kp A             &kp S         &kp D         &kp F                          &kp G        &kp ESCAPE                       &kp MINUS          &kp H            &kp J  &kp K      &kp L    &kp JP_QUOTE
 &mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                          &kp B        &kp JP_COLON                     &kp SEMICOLON      &kp N            &kp M  &kp COMMA  &kp DOT  &kp SLASH
@@ -111,25 +98,25 @@
         };
 
         FUNCTION {
-            bindings = 
-&kp EXCLAMATION   &kp JP_AT          &kp HASH         &kp F4          &kp PERCENT                                       &kp JP_CARET  &kp JP_AMPERSAND  &kp QUESTION    &kp F9     &kp MINUS
-&kp TAB           &kp LSHIFT         &kt F2           &kp DELETE      &kp JP_UNDERSCORE  &kp EXCLAMATION   &kp JP_ASTERISK  &kp JP_PLUS  &kp DELETE     &kp UP          &kp ENTER  &kp BACKSPACE
-&kp JP_LBRACKET   &kp JP_RBRACKET    &kp JP_LPAREN    &kp JP_RPAREN   &kp K_APPLICATION  &kp QUESTION      &kp SLASH        &kp MINUS    &kp LEFT       &kp DOWN_ARROW  &kp RIGHT  &kp ESCAPE
-&kp DOLLAR        &kp JP_YEN         &kp JP_TILDE     &kp LEFT_CONTROL &kp LEFT_ALT      &kp LEFT_SHIFT    &trans           &trans                                                  &kp RIGHT_WIN
+            bindings = <
+&kp EXCLAMATION   &kp JP_AT          &kp HASH         &kp F4             &kp PERCENT                                            &kp JP_CARET     &kp JP_AMPERSAND  &kp QUESTION    &kp F9     &kp MINUS
+&kp TAB           &kp LSHIFT         &kt F2           &kp DELETE         &kp JP_UNDERSCORE  &kp EXCLAMATION   &kp JP_ASTERISK  &kp JP_PLUS      &kp DELETE        &kp UP          &kp ENTER  &kp BACKSPACE
+&kp JP_LBRACKET   &kp JP_RBRACKET    &kp JP_LPAREN    &kp JP_RPAREN      &kp K_APPLICATION  &kp QUESTION      &kp SLASH        &kp MINUS        &kp LEFT          &kp DOWN_ARROW  &kp RIGHT  &kp ESCAPE
+&kp DOLLAR        &kp JP_YEN         &kp JP_TILDE     &kp LEFT_CONTROL   &kp LEFT_ALT       &kp LEFT_SHIFT    &trans           &trans                                                       &kp RIGHT_WIN
             >;
         };
 
         NUM {
-            bindings = 
-&kp MINUS                &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp JP_PLUS                                                 &kp JP_CARET      &kp JP_AMPERSAND   &kp JP_TILDE    &kp JP_LPAREN     &kp JP_RPAREN
-&kp SLASH                &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp JP_ASTERISK  &kp LC(LA(KP_NUMBER_0))   &kp JP_UNDERSCORE  &kp EXCLAMATION  &kp JP_AT          &kp HASH        &kp DOLLAR        &kp PERCENT
+            bindings = <
+&kp MINUS                &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp JP_PLUS                                                  &kp JP_CARET      &kp JP_AMPERSAND   &kp JP_TILDE    &kp JP_LPAREN     &kp JP_RPAREN
+&kp SLASH                &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp JP_ASTERISK  &kp LC(LA(KP_NUMBER_0))    &kp JP_UNDERSCORE  &kp EXCLAMATION  &kp JP_AT          &kp HASH        &kp DOLLAR        &kp PERCENT
 &mt LEFT_SHIFT NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PERIOD       &kp JP_EQUAL              &trans             &kp JP_LBRACKET  &kp JP_RBRACKET    &kp JP_LBRACE   &kp JP_RBRACE     &kp JP_YEN
 &trans                   &trans        &trans        &trans        &trans           &trans                   &trans             &trans                                                                &kp JP_PIPE
             >;
         };
 
         ARROW {
-            bindings = 
+            bindings = <
 &kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans             &trans       &trans         &trans  &trans
 &kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans             &kp PAGE_UP  &kp PAGE_DOWN  &trans  &trans
 &kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &kp LEFT_ALT    &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans             &trans       &trans         &trans  &trans
@@ -140,7 +127,7 @@
         };
 
         MOUSE {
-            bindings = 
+            bindings = <
 &trans            &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
 &kp LEFT_CONTROL  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
 &kp LSHIFT        &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
@@ -149,7 +136,7 @@
         };
 
         SCROLL {
-            bindings = 
+            bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
@@ -158,7 +145,7 @@
         };
 
         layer_6 {
-            bindings = 
+            bindings = <
 &trans  &trans  &trans  &trans  &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans  &trans  &trans  &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
