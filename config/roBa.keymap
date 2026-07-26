@@ -51,7 +51,7 @@
     combos {
         compatible = "zmk,combos";
 
-        shift_tab {
+        muhenkan {
             bindings = <&kp INT_MUHENKAN>;
             key-positions = <12 13>;
         };
@@ -116,7 +116,7 @@
         default_layer {
             bindings = <
 &kp Q   &kp L   &kp U   &kp F             &trans                                                              &trans       &kp W              &lt 5 R  &kp Y  &kp P
-&kp E   &kp I   &kp A   &mt LEFT_SHIFT O  &kp MINUS        &trans                       &trans                 &kp K        &mt RIGHT_SHIFT T  &kp N    &kp S  &kp H
+&kp E   &kp I   &kp A   &mt LEFT_SHIFT O  &kp MINUS        &mo 4                       &trans                 &kp K        &mt RIGHT_SHIFT T  &kp N    &kp S  &kp H
 &kp Z   &kp X   &kp C   &kp V             &kp COMMA        &kp LEFT_WIN                &kp K_APPLICATION      &kp G        &kp D              &kp M    &kp J  &kp B
 &trans  &trans  &trans  &kp DELETE        &lt 2 BACKSPACE  &mt LEFT_CONTROL ENTER      &mt RIGHT_CONTROL TAB  &lt 1 SPACE                                     &mo 6
             >;
@@ -174,9 +174,9 @@
         bluetooth {
             bindings = <
 &trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
+&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR_ALL
+&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &trans
             >;
         };
     };
