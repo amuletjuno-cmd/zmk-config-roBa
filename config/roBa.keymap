@@ -51,42 +51,57 @@
     combos {
         compatible = "zmk,combos";
 
-        muhenkan {
-            bindings = <&kp INT_MUHENKAN>;
-            key-positions = <12 13>;
-        };
-
-        alt {
-            bindings = <&kp RIGHT_ALT>;
-            key-positions = <20 21>;
-        };
-
-        f2 {
-            bindings = <&kp F2>;
-            key-positions = <7 8>;
-            layers = <0>;
-        };
-
-        henkan {
-            bindings = <&kp INT_HENKAN>;
-            key-positions = <18 19>;
+        // 縦2キー（上段＋ホーム段）。全レイヤー有効。同じ指の上下なのでロール誤爆はほぼ起きない
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 10>;        // 左小指 Q + E
+            timeout-ms = <50>;
         };
 
         APPLICATION {
             bindings = <&kp K_APPLICATION>;
-            key-positions = <12 11>;
-        };
-
-        esc {
-            bindings = <&kp ESCAPE>;
-            key-positions = <10 11>;
-        };
-
-        function {
-            bindings = <&mo 3>;
-            key-positions = <41 38>;
+            key-positions = <1 11>;        // 左薬指 L + I
             timeout-ms = <50>;
-            slow-release;
+        };
+
+        f2 {
+            bindings = <&kp F2>;
+            key-positions = <2 12>;        // 左中指 U + A
+            timeout-ms = <50>;
+        };
+
+        muhenkan {
+            bindings = <&kp INT_MUHENKAN>;
+            key-positions = <3 13>;        // 左人差し指 F + O
+            timeout-ms = <50>;
+        };
+
+        henkan {
+            bindings = <&kp INT_HENKAN>;
+            key-positions = <6 18>;        // 右人差し指 W + T
+            timeout-ms = <50>;
+        };
+
+        comma {
+            bindings = <&kp COMMA>;
+            key-positions = <7 19>;        // 右中指 R + N
+            timeout-ms = <50>;
+        };
+
+        dot {
+            bindings = <&kp PERIOD>;
+            key-positions = <8 20>;        // 右薬指 Y + S
+            timeout-ms = <50>;
+        };
+    };
+
+    // Red(1) と Yellow(2) を同時に有効にすると Gray(3) へ
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        function_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 
@@ -100,6 +115,17 @@
     };
 
     behaviors {
+        // ホームロウ修飾用。直前 150ms 以内に他キーを打っていたら必ずタップ扱い
+        hrm: home_row_mod {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
@@ -110,15 +136,16 @@
         };
     };
 
+    // 未使用ポジション: 4 5 15 16 27 28 34 35 36 (全レイヤー &none)
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp Q             &kp L             &kp U               &kp F             &trans                                                              &trans       &kp W             &lt 5 R           &kp Y            &kp P
-&mt LEFT_ALT E    &mt LEFT_GUI I    &mt LEFT_CONTROL A  &mt LEFT_SHIFT O  &kp MINUS        &trans                      &trans                 &kp K        &mt RIGHT_SHIFT T &mt RIGHT_CONTROL N  &mt RIGHT_GUI S  &mt RIGHT_ALT H
-&kp Z             &kp X             &kp C               &kp V             &kp COMMA        &trans                      &trans                 &kp G        &kp D             &kp M             &kp J            &kp B
-&trans            &trans            &trans              &kp DELETE        &lt 2 BACKSPACE  &mt LEFT_CONTROL ENTER      &mt RIGHT_CONTROL TAB  &lt 1 SPACE                                                       &mo 6
+&kp Q             &kp L             &kp U               &kp F             &none                                                               &none        &kp W             &lt 5 R           &kp Y            &kp P
+&hrm LEFT_ALT E    &hrm LEFT_GUI I    &hrm LEFT_CONTROL A  &hrm LEFT_SHIFT O  &kp MINUS        &none                       &none                  &kp K        &hrm RIGHT_SHIFT T &hrm RIGHT_CONTROL N  &hrm RIGHT_GUI S  &hrm RIGHT_ALT H
+&kp Z             &kp X             &kp C               &kp V             &kp COMMA        &none                       &none                  &kp G        &kp D             &kp M             &kp J            &kp B
+&none             &none             &none               &kp DELETE        &lt 2 BACKSPACE  &mt LEFT_CONTROL ENTER      &mt RIGHT_SHIFT TAB     &lt 1 SPACE                                                       &mo 6
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -126,28 +153,28 @@
 
         red {
             bindings = <
-&kp JP_AT            &kp JP_LBRACKET           &kp JP_DQUOTE                  &kp JP_RBRACKET           &trans                                          &trans      &kp LC(PAGE_UP)  &kp UP_ARROW    &kp RC(PAGE_DOWN)  &trans
-&mt LEFT_ALT HASH    &mt LEFT_GUI JP_LPAREN    &mt LEFT_CONTROL JP_QUOTE      &mt LEFT_SHIFT JP_RPAREN  &kp JP_AMPERSAND  &trans                &trans  &kp DELETE  &kp LEFT         &kp DOWN_ARROW  &kp RIGHT          &mt RIGHT_ALT ENTER
-&kp JP_YEN           &kp JP_LBRACE             &kp JP_BACKQUOTE               &kp JP_RBRACE             &kp JP_PIPE       &trans                &trans  &trans      &kp HOME         &kp F6          &kp END            &trans
-&trans               &trans                    &trans                         &trans                    &trans            &kp LEFT_CONTROL      &trans  &trans                                                          &trans
+&kp JP_AT            &kp JP_LBRACKET           &kp JP_DQUOTE                  &kp JP_RBRACKET           &none                                           &none       &kp LC(PAGE_UP)  &kp UP_ARROW    &kp RC(PAGE_DOWN)  &trans
+&hrm LEFT_ALT HASH    &hrm LEFT_GUI JP_LPAREN    &hrm LEFT_CONTROL JP_QUOTE      &hrm LEFT_SHIFT JP_RPAREN  &kp JP_AMPERSAND  &none                 &none   &kp DELETE  &kp LEFT         &kp DOWN_ARROW  &kp RIGHT          &hrm RIGHT_ALT ENTER
+&kp JP_YEN           &kp JP_LBRACE             &kp JP_BACKQUOTE               &kp JP_RBRACE             &kp JP_PIPE       &none                 &none   &trans      &kp HOME         &kp F6          &kp END            &trans
+&none                &none                     &none                          &trans                    &trans            &kp LEFT_CONTROL      &trans  &trans                                                          &trans
             >;
         };
 
         yellow {
             bindings = <
-&kp JP_TILDE  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans                                     &trans             &kp LESS_THAN       &kp JP_EQUAL  &kp GREATER_THAN  &kp PERCENT
-&kp N0        &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans      &trans      &trans             &kp JP_CARET       &kp JP_PLUS         &kp MINUS     &kp JP_ASTERISK   &kp SLASH
-&kp DOLLAR    &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PERIOD  &trans      &trans             &kp JP_UNDERSCORE  &kp EXCL            &kp QUESTION  &kp JP_COLON      &kp SEMI
-&trans        &trans        &trans        &trans        &trans      &trans      &kp RIGHT_CONTROL  &trans                                                                 &trans
+&kp JP_TILDE  &kp COMMA         &kp PERIOD    &kp JP_CARET      &none                                     &none              &kp JP_PLUS         &kp MINUS     &kp JP_ASTERISK   &kp SLASH
+&hrm LEFT_ALT NUMBER_1  &hrm LEFT_GUI NUMBER_2      &hrm LEFT_CONTROL NUMBER_3  &hrm LEFT_SHIFT NUMBER_4      &kp NUMBER_5  &none     &none             &kp NUMBER_6       &hrm RIGHT_SHIFT NUMBER_7  &hrm RIGHT_CONTROL NUMBER_8  &hrm RIGHT_GUI NUMBER_9  &hrm RIGHT_ALT NUMBER_0
+&kp DOLLAR    &kp LESS_THAN     &kp JP_EQUAL  &kp GREATER_THAN  &kp PERCENT   &none     &none             &kp JP_UNDERSCORE  &kp EXCL            &kp QUESTION  &kp JP_COLON      &kp SEMI
+&none         &none             &none         &trans            &trans        &trans    &kp RIGHT_CONTROL &trans                                                                 &trans
             >;
         };
 
         gray {
             bindings = <
-&kp F1  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans   &kp F12
-&kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &trans      &trans  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
+&trans   &trans   &trans   &trans   &none                       &none    &trans   &trans   &trans   &trans
+&hrm LEFT_ALT F1  &hrm LEFT_GUI F2  &hrm LEFT_CONTROL F3  &hrm LEFT_SHIFT F4   &kp F5   &none      &none   &kp F6   &hrm RIGHT_SHIFT F7  &hrm RIGHT_CONTROL F8  &hrm RIGHT_GUI F9  &hrm RIGHT_ALT F10
+&kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &none      &none   &kp F16  &kp F17  &kp F18  &kp F19  &kp F20
+&none    &none    &none    &trans   &trans   &trans     &trans  &trans                              &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -155,28 +182,28 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
+&trans  &trans  &trans  &trans  &none                       &none   &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &none       &none   &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &none       &none   &trans  &trans    &trans    &trans    &trans
+&none   &none   &none   &trans  &trans  &trans      &trans  &trans                                &trans
             >;
         };
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &trans  &none                       &none   &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &none       &none   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &none       &none   &trans  &trans  &trans  &trans  &trans
+&none   &none   &none   &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
         bluetooth {
             bindings = <
-&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR_ALL
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &trans
+&trans  &trans        &trans        &trans        &none                            &none         &trans        &trans        &trans        &bootloader
+&trans  &trans        &trans        &trans        &trans  &none       &none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &none       &none        &trans        &trans        &trans        &bt BT_CLR    &bt BT_CLR_ALL
+&none   &none         &none         &trans        &trans  &trans      &trans       &trans                                                  &trans
             >;
         };
     };
