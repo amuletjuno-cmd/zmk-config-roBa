@@ -141,10 +141,10 @@
 
         default_layer {
             bindings = <
-&kp Q            &kp L            &kp U                &kp F                  &none                                                           &none        &kp W               &lt 5 R               &kp Y             &kp P
-&hrm LEFT_ALT E  &hrm LEFT_GUI I  &hrm LEFT_CONTROL A  &hrm LEFT_SHIFT O      &kp MINUS        &none                   &none                  &kp K        &hrm RIGHT_SHIFT T  &hrm RIGHT_CONTROL N  &hrm RIGHT_GUI S  &hrm RIGHT_ALT H
-&kp Z            &kp X            &kp C                &kp V                  &kp COMMA        &none                   &none                  &kp G        &kp D               &kp M                 &kp J             &kp B
-&none            &none            &none                &mt LEFT_SHIFT DELETE  &lt 2 BACKSPACE  &mt LEFT_CONTROL ENTER  &mt RIGHT_CONTROL TAB  &lt 1 SPACE                                                              &mo 6
+&kp Q              &kp L            &kp U                &kp F                  &none                                                           &none        &kp W               &lt 5 R               &kp Y             &kp P
+&hrm LEFT_ALT E    &hrm LEFT_GUI I  &hrm LEFT_CONTROL A  &hrm LEFT_SHIFT O      &kp MINUS        &none                   &none                  &kp K        &hrm RIGHT_SHIFT T  &hrm RIGHT_CONTROL N  &hrm RIGHT_GUI S  &hrm RIGHT_ALT H
+&hrm LEFT_SHIFT Z  &kp X            &kp C                &kp V                  &kp COMMA        &none                   &none                  &kp G        &kp D               &kp M                 &kp J             &hrm LEFT_SHIFT B
+&none              &none            &none                &mt LEFT_SHIFT DELETE  &lt 2 BACKSPACE  &mt LEFT_CONTROL ENTER  &mt RIGHT_CONTROL TAB  &lt 1 SPACE                                                              &mo 6
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -155,7 +155,7 @@
 &kp JP_AT           &kp JP_LBRACKET          &kp JP_DQUOTE               &kp JP_RBRACKET            &none                             &none       &kp LC(PAGE_UP)  &kp UP_ARROW    &kp RC(PAGE_DOWN)  &trans
 &hrm LEFT_ALT HASH  &hrm LEFT_GUI JP_LPAREN  &hrm LEFT_CONTROL JP_QUOTE  &hrm LEFT_SHIFT JP_RPAREN  &kp JP_AMPERSAND  &none   &none   &kp DELETE  &kp LEFT         &kp DOWN_ARROW  &kp RIGHT          &hrm RIGHT_ALT ENTER
 &kp JP_YEN          &kp JP_LBRACE            &kp JP_BACKQUOTE            &kp JP_RBRACE              &kp JP_PIPE       &none   &none   &trans      &kp HOME         &kp F6          &kp END            &trans
-&none               &none                    &none                       &trans                     &trans            &trans  &trans  &trans                                                          &trans
+&none               &none                    &none                       &trans                     &mo 3             &trans  &trans  &trans                                                          &trans
             >;
         };
 
@@ -164,7 +164,7 @@
 &kp JP_TILDE            &kp COMMA               &kp PERIOD                  &kp JP_CARET              &none                         &none              &kp JP_PLUS                &kp MINUS                    &kp JP_ASTERISK          &kp SLASH
 &hrm LEFT_ALT NUMBER_1  &hrm LEFT_GUI NUMBER_2  &hrm LEFT_CONTROL NUMBER_3  &hrm LEFT_SHIFT NUMBER_4  &kp NUMBER_5  &none   &none   &kp NUMBER_6       &hrm RIGHT_SHIFT NUMBER_7  &hrm RIGHT_CONTROL NUMBER_8  &hrm RIGHT_GUI NUMBER_9  &hrm RIGHT_ALT NUMBER_0
 &kp DOLLAR              &kp LESS_THAN           &kp JP_EQUAL                &kp GREATER_THAN          &kp PERCENT   &none   &none   &kp JP_UNDERSCORE  &kp EXCL                   &kp QUESTION                 &kp SEMI                 &kp JP_COLON
-&none                   &none                   &none                       &trans                    &trans        &trans  &trans  &trans                                                                                              &trans
+&none                   &none                   &none                       &trans                    &trans        &trans  &trans  &mo 3                                                                                               &trans
             >;
         };
 
@@ -181,19 +181,19 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &none                   &none   &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans    &trans    &trans    &trans
-&none   &none   &none   &trans  &trans  &trans  &trans  &trans                                &trans
+&trans        &trans        &trans            &trans          &none                 &none   &trans    &trans    &trans    &trans
+&kp LEFT_ALT  &kp LEFT_GUI  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &trans  &none  &none  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans        &trans        &trans            &trans          &trans  &none  &none  &trans  &trans    &trans    &trans    &trans
+&none         &none         &none             &to 0           &to 0   &to 0  &to 0  &to 0                                 &trans
             >;
         };
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &none                   &none   &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &none   &none   &trans  &trans  &trans  &trans  &trans
-&none   &none   &none   &trans  &trans  &trans  &trans  &trans                          &trans
+&trans        &trans        &trans            &trans          &none                 &none   &trans  &trans  &trans  &trans
+&kp LEFT_ALT  &kp LEFT_GUI  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &trans  &none  &none  &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans            &trans          &trans  &none  &none  &trans  &trans  &trans  &trans  &trans
+&none         &none         &none             &to 0           &to 0   &to 0  &to 0  &to 0                           &trans
             >;
         };
 
